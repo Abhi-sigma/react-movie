@@ -1,0 +1,67 @@
+
+.image_suggestions{
+	width: 60px;
+    height: 60px;
+    border: 2px solid green;
+    position: relative;
+    display: inline-block;
+    /* top: 50px; */
+}
+
+.suggestions_list{
+	display: inline-block;
+    position: relative;
+    top: -1.75REM;
+    margin: 10PX;
+    font-weight: 800;
+    /* BORDER: 4PX SOLID BLUE; */
+    background: #FFF176;
+}
+
+.searchblock{
+	text-align:center;
+	width: 22vw;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.suggestion_wrapper{
+	text-align: justify;
+    position: relative;
+
+}
+
+.cast-suggestions{
+	display:flex;
+	align-items: center;
+    justify-content:center
+}
+
+
+.cast{
+	display: inline-block;
+	margin:10px;
+}
+
+
+.cast img{
+	width:200px;
+	height:150px;
+	border: 2px solid beige;
+    /*box-shadow: 0 0 14px 4px black;*/
+
+}
+
+.cast li{
+	list-style: none;
+	text-align:center;
+	font-size: 1.5rem;
+    background: green;
+    color: white;
+}
+
+.iframe-container{
+	text-align: center;
+	margin:20px;
+
+}

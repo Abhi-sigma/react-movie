@@ -1,12 +1,33 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './logo.svg';
-import Search from './components/searchComponent/search'
-import './App.css';
+import Search from './components/searchComponent/search';
+import AdminSearch from './components/adminSearch/admin_search';
+import MovieComponent from './components/movieComponent/moviecomponent';
+import ActorComponent from './components/actorComponent/actorcomponent';
+import DirectorComponent from './components/directorComponent/directorcomponent';
+
+
 
 function App() {
+
+	const[clickedSuggestion,set_clickedSuggestion] = useState("");
+
+
+	const clickedSuggestionHandler = (data) => {
+		console.log(data);
+		set_clickedSuggestion(data);
+	}
+
+
+
+
+
   return (
     <div className="App">
-    <Search/>
+    <Search  clickedSuggestionHandler = {clickedSuggestionHandler} />
+    <AdminSearch/>
+    {clickedSuggestion ?
+    <MovieComponent  movieData = {clickedSuggestion} /> :""}
 
     </div>
   );
