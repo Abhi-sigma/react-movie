@@ -13,9 +13,10 @@ function App() {
 	const[clickedSuggestion,set_clickedSuggestion] = useState("");
 
 
-	const clickedSuggestionHandler = (data) => {
-		console.log(data);
+
+	const clickedSuggestionHandler = (data,query) => {
 		set_clickedSuggestion(data);
+
 	}
 
 
@@ -26,8 +27,11 @@ function App() {
     <div className="App">
     <Search  clickedSuggestionHandler = {clickedSuggestionHandler} />
     <AdminSearch/>
-    {clickedSuggestion ?
+    {clickedSuggestion.type === 'm' ?
     <MovieComponent  movieData = {clickedSuggestion} /> :""}
+    {clickedSuggestion.type === 'actor'?
+    <ActorComponent clickHandler = {clickedSuggestionHandler} actorData = {clickedSuggestion}
+    />:""}
 
     </div>
   );

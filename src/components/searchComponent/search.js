@@ -29,10 +29,18 @@ function Search(props){
 
 	const onChange = e => {
 		let input = e.target.value;
+		// if(!input){
+		// 	props.clickedSuggestionHandler({});
+		// 	set_search_query("");
+
+		// }
+		// else{
 		set_search_query(input);
 		const movie_suggestions = getSuggestions("m",set_movie_suggestions);
 		const cast_suggestions =  getSuggestions("actor",set_cast_suggestions);
 		const director_suggestions = getSuggestions("director",set_director_suggestions);
+	   // }
+
 
 	}
 
@@ -48,8 +56,8 @@ function Search(props){
 	const onClickActorhandler = e => {
 		e.preventDefault();
 		const cast_id = e.target.parentElement.dataset.cast_id;
-		props.clickedSuggestionHandler({"id":cast_id,"type":"actor"});
-		set_search_query("");
+		const actor_object = cast_suggestions.filter( (item) => item.cast_id === cast_id )[0]
+		props.clickedSuggestionHandler({"id":cast_id,"type":"actor",'name':actor_object.name});
 
 
 	}
@@ -66,9 +74,14 @@ function Search(props){
 
 
 
+
+
 	return(
 		<div className = "searchblock">
-		 <input onChange = {onChange} type = "text" placeholder = "search" />
+		<div className = "form-group">
+		 <input onChange = {onChange} className = "form-control" type = "text" placeholder = "search" />
+		 <small id="search_help" className ="form-text text-muted ">Try combinations of actors,directors and everything in between</small>
+		 </div>
 		 <div className = "suggestionblock">
 		 { search_query  ? <div className = "suggestion_wrapper"  >
 		 						<Movie onClickHandler = {onClickMoviehandler}
@@ -127,6 +140,11 @@ function Director(props){
 		  )
 	)
 
+
+}
+
+
+function StaticNavBar(){
 
 }
 

@@ -42,7 +42,7 @@ const SetYouTubePlayerScript = () =>{
  	player = new window.YT.Player('ytplayer', {
       	height: '360',
       	width: '640',
-      	videoId:'aO6Z_KekVdw'
+      	videoId:video_id
     	});
 
  }
