@@ -16,7 +16,8 @@ function App() {
 
 
 	const clickedSuggestionHandler = (data,query) => {
-		set_clickedSuggestion(data);
+    set_clickedSuggestion(data);
+    //sanish regmi
 
 	}
 
