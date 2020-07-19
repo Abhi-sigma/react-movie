@@ -4,9 +4,10 @@ import axios from 'axios';
 function AdminSearch(){
 	const [search_query,set_search_query] = useState("");
 	const [rendered_suggestions,set_renderered_suggestions] = useState([]);
+	const[db_status,set_db_state] = useState({string_result:"Query DB,if not found,add buttons will be activated",status:false});
 
 
-	const onChange = e => {
+	const onChangeInput = e => {
 		// make a network query here
 		// on arrival of results
 		// we will put that in state
@@ -19,12 +20,31 @@ function AdminSearch(){
 	})
 }
 
+
+		const queryHandler = e => {
+			e.preventDefault();
+			const query_string = e.target.previousElementSibling.value;
+			// console.log(query_string);
+			// make api request which should return true if found
+			// for now enables the add input
+			set_db_state({string_result:"query string not found,activating add inputs",status:true})
+
+		}
+
+
+		const submitForm = e =>{
+			e.preventDefault();
+			// make put request
+
+
+		}
+
 	return(
 
 		<React.Fragment>
 		<div className = "searchblock-wrapper">
 			<div className = "search-input">
-				 <input className = "form-control" onChange = {onChange} type = "text" placeholder = "adminsearch" />
+				 <input className = "form-control" onChange = {onChangeInput} type = "text" placeholder = "adminsearch" />
 			</div>
 		</div>
 
@@ -42,21 +62,29 @@ function AdminSearch(){
 		 	<form className = "upload-form">
 		 		<div className="form-group">
 				    <label htmlFor="movie_title">Movie Name</label>
-				    <input type="text" className = "form-control" id = "movie_title" aria-describedby="movie_title" readOnly value={item.Title}/>
+				    <input type="text" name = "movie_name" className = "form-control" id = "movie_title" aria-describedby="movie_title" readOnly value={item.Title}/>
 				</div>
 				<div className="form-group">
 				    <label htmlFor="movie_title_alternate">Alternate Movie Name</label>
-				    <input type="text" className = "form-control" id = "movie_title_alternate" aria-describedby="movie_title" />
+				    <input type="text" name = "movie_alternate_title" className = "form-control" id = "movie_title_alternate" aria-describedby="movie_title" />
 				    <small  className="form-text text-muted">provide an alternate title eg dubbed version</small>
 				</div>
 				<div className="form-group">
 				    <label htmlFor="movie_tags">Movie Tags</label>
-				    <input type="text" className = "form-control" id = "movie_tags" aria-describedby="movie_title" />
+				    <input type="text" name = "tags" className = "form-control" id = "movie_tags" aria-describedby="movie_title" />
 				    <small  className="form-text text-muted">provide tags like horror,comedy seperated by comma</small>
 				</div>
 				<div className="form-group">
 				    <label htmlFor="director">Director</label>
 				    <input type="text" className="form-control" id="director" aria-describedby="director" readOnly value={item.Director}/>
+				    <button onClick = {queryHandler} className="btn btn-primary">Query DB</button>
+				    <small>{db_status.string_result}</small>
+				    <div>
+				    {db_status.status?
+				    <input type = "text" placeholder = "Enter image link"/>
+
+				    :""}
+				    </div>
 				</div>
 				<div className="form-group">
 				    <label htmlFor="released_year">Released Year</label>
@@ -75,14 +103,18 @@ function AdminSearch(){
 				    <input type="text" className="form-control" id="movie_language" aria-describedby="movie_language"  readOnly value={item.Language}/>
 				</div>
 				<div className="form-group">
-				    <label htmlFor="movie_plot">Movie Language</label>
+				    <label htmlFor="movie_language">Imdb Rating</label>
+				    <input type="text" className="form-control" id="movie_rating" aria-describedby="movie_language"  readOnly value={item.imdbRating}/>
+				</div>
+				<div className="form-group">
+				    <label htmlFor="movie_plot">Movie Plot</label>
 				    <input type="text" className="form-control" id="movie_plot" aria-describedby="movie_plot" readOnly value={item.Plot}/>
 				</div>
 				<div className="form-group">
 				    <label htmlFor="movie_link">Youtube Link</label>
 				    <input type="text" className="form-control" id="youtube_link" aria-describedby="youtube link" />
 				</div>
-				<button className ="button" type = "submit">Submit</button>
+				<button onClick = {submitForm} className ="button" type = "submit">Submit</button>
 		 	</form>
 
 		 	</React.Fragment>
