@@ -13,6 +13,7 @@ function Search(props){
 	const [movie_suggestions,set_movie_suggestions] = useState([]);
 	const [director_suggestions,set_director_suggestions] = useState([]);
 	const [other_suggestions,set_other_suggestions] = useState([]);
+	const [movie_id,set_movie_id] = useState("")
 
 	// common functions to get suggestions from the query
 
@@ -46,8 +47,9 @@ function Search(props){
 
 	const onClickMoviehandler = e => {
 		e.preventDefault();
-		const movie_id = e.target.parentElement.dataset.movie_id;
-		props.clickedSuggestionHandler({"id":movie_id,"type":"m"});
+		const movie_id_dom = e.target.parentElement.dataset.movie_id;
+		set_movie_id(movie_id_dom);
+		props.clickedSuggestionHandler({"id":movie_id_dom ,"type":"m"});
 		set_search_query("");
 
 
@@ -58,6 +60,7 @@ function Search(props){
 		const cast_id = e.target.parentElement.dataset.cast_id;
 		const actor_object = cast_suggestions.filter( (item) => item.cast_id === cast_id )[0]
 		props.clickedSuggestionHandler({"id":cast_id,"type":"actor",'name':actor_object.name});
+		set_search_query("");
 
 
 	}
@@ -66,6 +69,7 @@ function Search(props){
 		e.preventDefault();
 		const director_id = e.target.parentElement.dataset.director_id;
 		props.clickedSuggestionHandler({"id":director_id,"type":"director"});
+		set_search_query("");
 		set_search_query("");
 
 

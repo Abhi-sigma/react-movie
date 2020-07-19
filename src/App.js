@@ -5,6 +5,7 @@ import AdminSearch from './components/adminSearch/admin_search';
 import MovieComponent from './components/movieComponent/moviecomponent';
 import ActorComponent from './components/actorComponent/actorcomponent';
 import DirectorComponent from './components/directorComponent/directorcomponent';
+import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 
 
 
@@ -24,17 +25,25 @@ function App() {
 
 
   return (
-    <div className="App">
-    <Search  clickedSuggestionHandler = {clickedSuggestionHandler} />
-    <AdminSearch/>
-    {clickedSuggestion.type === 'm' ?
-    <MovieComponent  movieData = {clickedSuggestion} /> :""}
-    {clickedSuggestion.type === 'actor'?
-    <ActorComponent clickHandler = {clickedSuggestionHandler} actorData = {clickedSuggestion}
-    />:""}
-
-    </div>
+    <Router>
+        <Switch>
+            <Route path="/admin">
+                <AdminSearch/>
+            </Route>
+            <Route path="/">
+                 <div className="App">
+                    <Search  clickedSuggestionHandler = {clickedSuggestionHandler} />
+                    {clickedSuggestion.type === 'm' ?
+                    <MovieComponent  movieData = {clickedSuggestion} key = {clickedSuggestion.id} /> :""}
+                    {clickedSuggestion.type === 'actor'?
+                    <ActorComponent clickHandler = {clickedSuggestionHandler} actorData = {clickedSuggestion}
+                     />:""}
+            </div>
+            </Route>
+        </Switch>
+    </Router>
   );
 }
 
 export default App;
+

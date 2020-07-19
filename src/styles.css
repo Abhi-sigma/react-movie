@@ -1,28 +1,68 @@
 
+html,body{
+  height:100%;
+  width:100%;
+}
+
+
 .image_suggestions{
-	width: 60px;
+    width: 60px;
     height: 60px;
     border: 2px solid green;
     position: relative;
     display: inline-block;
-    /* top: 50px; */
+    /*top: 50px;*/
+}
+
+.admin-search-img{
+   border: 2px solid green;
+    position: relative;
+    display: inline-block;
+}
+
+.searchblock{
+  width: 50%;
+    margin: 0 auto;
+    margin-top: 10px;
+
 }
 
 .suggestions_list{
 	display: inline-block;
     position: relative;
-    top: -1.75REM;
+    top: 0.25REM;
     margin: 10PX;
     font-weight: 800;
     /* BORDER: 4PX SOLID BLUE; */
-    background: #FFF176;
+    /* background: #FFF176; */
+    border-bottom: 2px solid;
 }
 
-.searchblock{
+
+.suggestionblock{
+  position: absolute;
+    background: white;
+    top: 3rem;
+}
+
+.search-input{
 	text-align:center;
 	width: 22vw;
     margin: 0 auto;
     margin-top: 10px;
+}
+.search_movie_info{
+  /*position: relative;*/
+  width:40%;
+  left:5px;
+  float: left;
+}
+
+.upload-form{
+  position:relative;
+  width:40%;
+  right:15px;
+  float:right;
 }
 
 .suggestion_wrapper{

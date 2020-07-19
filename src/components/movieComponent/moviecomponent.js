@@ -1,15 +1,20 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import * as result from "../../test_object.js" ;
 import CastComponent from './castcomponent.js';
 import MoviePlayer from '../moviePlayer/movieplayer.js';
 
-class MovieComponent extends React.Component {
+class MovieComponent extends React.Component{
 
 
 	constructor(props){
 		super(props);
-		this.state = {"selected_movie_id":this.props.movieData.id};
+		this.state = {"selected_movie_id":""};
 
+	}
+
+
+	componentDidMount(){
+		this.setState({"selected_movie_id":this.props.movieData.id})
 	}
 
 
@@ -28,16 +33,13 @@ class MovieComponent extends React.Component {
 	}
 
 	render(){
+
 		return(
 			<div>
-			<MoviePlayer movie_id = {this.state.selected_movie_id} />
+			<MoviePlayer movie_id = {this.state.selected_movie_id} key ={this.state.selected_movie_id}  />
 			<CastComponent cast = {this.displaycast} movie_id = {this.props.movieData.id}/>
 			</div>
 			)
-
-
-
-
 	}
 }
 
