@@ -35,7 +35,51 @@ function AdminSearch(){
 		const submitForm = e =>{
 			e.preventDefault();
 			// make put request
+			
+			let input = {
+				movie:{
+					MovieId:0,
+					Name:"Kushume",
+					//ReleaseDate:Date.now.toString(),
+					Rating:5,
+					//InsertedDate:Date.now.toString()
+				},
+				actors:[
+					{
+						ActorId:1,
+						FirstName:"Sanish",
+						LastName:"Regmi",
+						ActorTypeId:1
+					},{
 
+						ActorId:2,
+						FirstName:"Hari",
+						LastName:"Pathik",
+						ActorTypeId:1
+					}
+
+				]
+				
+			}
+				
+			console.log(JSON.stringify(input))
+			
+			const headers = {
+				'Content-Type': 'application/json; charset=utf-8',
+				
+			  }
+			 axios.post("https://localhost:5001/api/weatherforecast/actor",JSON.stringify(input),{
+				headers: headers
+			})
+			.then( res => {
+				
+				console.log(res.data)
+			}).catch(
+			function(error){
+
+				console.log(error.response);
+			}
+		)
 
 		}
 
@@ -94,7 +138,7 @@ function AdminSearch(){
 				{item.Actors?item.Actors.split(",").map((item,index) =>
 				<div className="form-group" key = {index}>
 				    <label htmlFor="actor_name">Actors</label>
-				    <input type="text" className="form-control" aria-describedby="actor_name" readOnly value={item}/>
+				    <input type="text" name={ "Actors["+index+"].FirstName"} className="form-control" aria-describedby="actor_name" readOnly value={item}/>
 				</div>
 				):""}
 				</div>
