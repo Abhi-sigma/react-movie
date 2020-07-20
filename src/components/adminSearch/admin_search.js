@@ -65,6 +65,10 @@ function AdminSearch(){
 				    <input type="text" name = "movie_name" className = "form-control" id = "movie_title" aria-describedby="movie_title" readOnly value={item.Title}/>
 				</div>
 				<div className="form-group">
+				    <label htmlFor="movie_postor">Movie Poster</label>
+				    <input type="text" name = "movie_poster" className = "form-control" id = "movie_poster" aria-describedby="movie_title" readOnly value={item.Poster}/>
+				</div>
+				<div className="form-group">
 				    <label htmlFor="movie_title_alternate">Alternate Movie Name</label>
 				    <input type="text" name = "movie_alternate_title" className = "form-control" id = "movie_title_alternate" aria-describedby="movie_title" />
 				    <small  className="form-text text-muted">provide an alternate title eg dubbed version</small>

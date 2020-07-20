@@ -40,7 +40,7 @@ const SetYouTubePlayerScript = () =>{
  const loadVideo = () =>{
  	const video_id = props.movie_id;
  	player = new window.YT.Player('ytplayer', {
-      	height: '100%',
+      	height: '600px',
       	width: '100%',
       	videoId:video_id
     	});

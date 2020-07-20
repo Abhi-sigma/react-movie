@@ -37,7 +37,7 @@ class MovieComponent extends React.Component{
 		return(
 			<div>
 			<MoviePlayer movie_id = {this.state.selected_movie_id} key ={this.state.selected_movie_id}  />
-			<CastComponent cast = {this.displaycast} movie_id = {this.props.movieData.id}/>
+			<CastComponent moviecastClick = {this.props.onCastClick} cast = {this.displaycast} movie_id = {this.props.movieData.id}/>
 			</div>
 			)
 	}

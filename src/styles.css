@@ -147,3 +147,8 @@ html,body{
 ::-webkit-scrollbar-thumb:hover {
   background: #b30000;
 }
+
+#root a.navbar-brand{
+  color:white;
+  font-weight:800;
+}
