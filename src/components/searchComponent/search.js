@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styles from '../../styles.css';
 import * as result from "../../test_object.js" ;
+import {BrowserRouter as Router,Switch,Route,Link,useRouteMatch,useParams} from "react-router-dom";
+
 const suggestions =[];
 
 function Search(props){
@@ -47,7 +49,8 @@ function Search(props){
 
 	const onClickMoviehandler = e => {
 		e.preventDefault();
-		const movie_id_dom = e.target.parentElement.dataset.movie_id;
+		const movie_id_dom = e.target.parentElement.parentElement.dataset.movie_id;
+		console.log(e,movie_id_dom);
 		set_movie_id(movie_id_dom);
 		props.clickedSuggestionHandler({"id":movie_id_dom ,"type":"m"});
 		set_search_query("");
@@ -57,7 +60,7 @@ function Search(props){
 
 	const onClickActorhandler = e => {
 		e.preventDefault();
-		const cast_id = e.target.parentElement.dataset.cast_id;
+		const cast_id = e.target.parentElement.parentElement.dataset.cast_id;
 		const actor_object = cast_suggestions.filter( (item) => item.cast_id === cast_id )[0]
 		props.clickedSuggestionHandler({"id":cast_id,"type":"actor",'name':actor_object.name});
 		set_search_query("");
@@ -70,7 +73,7 @@ function Search(props){
 		const director_id = e.target.parentElement.dataset.director_id;
 		props.clickedSuggestionHandler({"id":director_id,"type":"director"});
 		set_search_query("");
-		set_search_query("");
+
 
 
 	}
@@ -109,7 +112,12 @@ function Movie(props){
 		movie_suggestions.map( (item,index) =>
 			<div onClick = {props.onClickHandler} data-movie_id = {item.movie_id} >
 			 	<img  src = {item.movie_poster} className = "image_suggestions"></img>
-			 	<li  className ="suggestions_list" >{item.movie_name} </li>
+			 	<Link to={`/movie/${item.movie_id}`}>
+			 	<li  className ="suggestions_list" >{item.movie_name}
+
+
+			 	</li>
+			 	</Link>
 		 	</div>
 		  )
 	)
@@ -124,7 +132,9 @@ function Cast(props){
 		cast_suggestions.map( (item,index) =>
 			<div  onClick = {props.onClickHandler} data-cast_id = {item.cast_id} >
 			 	<img  src = {item.image} className = "image_suggestions"></img>
+			 	<Link to={`/actor/${item.cast_id}`}>
 			 	<li className ="suggestions_list" >{item.name} </li>
+			 	</Link>
 		 	</div>
 		  )
 	)

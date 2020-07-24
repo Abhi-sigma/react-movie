@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import * as result from "../../test_object.js" ;
+import {BrowserRouter as Router,Switch,Route,Link,useRouteMatch,useParams} from "react-router-dom";
+
 
 
 function ActorComponent(props){
@@ -67,7 +69,6 @@ function ActorComponent(props){
 
 
 		const onClickCastMoviehandler = e => {
-		e.preventDefault();
 		const movie_id = e.target.parentElement.dataset.movie_id;
 		props.clickHandler({"id":movie_id,"type":"m"});
 
@@ -86,11 +87,14 @@ function ActorComponent(props){
 
 				<div className = "cast-movies" >
 				{cast_movies ? cast_movies.map( (item) =>
-					<div className = "movie-data-wrapper" data-movie_id = {item.movie_id}>
-					<img  onClick = {onClickCastMoviehandler} src = {item.poster}></img>
-					<li>{item.movie_name}</li>
-					</div>
+						<Link to={`/movie/${item.movie_id}`}>
+						<div className = "movie-data-wrapper" data-movie_id = {item.movie_id}>
+						<img  onClick = {onClickCastMoviehandler} src = {item.poster}></img>
+						<li>{item.movie_name}</li>
+						</div>
+					</Link>
 					) :null
+
 					}
 
 				</div>

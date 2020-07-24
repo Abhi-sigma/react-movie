@@ -6,7 +6,7 @@ import MovieComponent from './components/movieComponent/moviecomponent';
 import ActorComponent from './components/actorComponent/actorcomponent';
 import DirectorComponent from './components/directorComponent/directorcomponent';
 import Home from './components/homeComponent/homecomponent';
-import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
+import {BrowserRouter as Router,Switch,Route,Link,useRouteMatch,useParams} from "react-router-dom";
 
 
 
@@ -35,17 +35,30 @@ function App() {
             <Route path="/admin">
                 <AdminSearch/>
             </Route>
-            <Route path="/">
+            <Route exact path="/">
                  <div className="App">
                  <Home searchSuggestionHandler = {clickedSuggestionHandler}>
-                    {clickedSuggestion.type === 'm' ?
-                    <MovieComponent onCastClick = {onCastClickHandler} movieData = {clickedSuggestion} key = {clickedSuggestion.id} /> :""}
-                    {clickedSuggestion.type === 'actor'?
-                    <ActorComponent clickHandler = {clickedSuggestionHandler} actorData = {clickedSuggestion}
-                     />:""}
+
                 </Home>
             </div>
             </Route>
+
+            <Route exact path="/movie/:id">
+
+            {clickedSuggestion && clickedSuggestion.type === 'm' ?
+                    <MovieComponent onCastClick = {onCastClickHandler}
+                                    movieData = {clickedSuggestion}
+                                    key = {clickedSuggestion.id} /> :""}
+            </Route>
+            <Route exact path="/actor/:id">
+                    {clickedSuggestion && clickedSuggestion.type === 'actor'?
+                    <ActorComponent
+                    clickHandler = {clickedSuggestionHandler}
+                    actorData = {clickedSuggestion} key = {clickedSuggestion.id}
+                     />:""}
+            </Route>
+
+
         </Switch>
     </Router>
   );
