@@ -88,8 +88,8 @@ function ActorComponent(props){
 				<div className = "cast-movies" >
 				{cast_movies ? cast_movies.map( (item) =>
 						<Link to={`/movie/${item.movie_id}`}>
-						<div className = "movie-data-wrapper" data-movie_id = {item.movie_id}>
-						<img  onClick = {onClickCastMoviehandler} src = {item.poster}></img>
+						<div onClick = {onClickCastMoviehandler} className = "movie-data-wrapper" data-movie_id = {item.movie_id}>
+						<img   src = {item.poster}></img>
 						<li>{item.movie_name}</li>
 						</div>
 					</Link>
